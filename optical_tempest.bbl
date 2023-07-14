@@ -1,0 +1,279 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Agilent Technologies}{Agilent
+  Technologies}{1999}]{agilent_led_data_sheet}
+Agilent Technologies 1999.
+\newblock {\em T-$1\frac{3}{4}$ (5 mm) Diffused LED Lamps Technical Data}.
+\newblock Agilent Technologies.
+\newblock Data sheet 5968-4161E (2/99).
+
+\bibitem[\protect\citeauthoryear{Anderson}{Anderson}{2001}]{anderson_security_engineering}
+{\sc Anderson, R.~J.} 2001.
+\newblock {\em Security Engineering: A Guide to Building Dependable Distributed
+  Systems}.
+\newblock John Wiley \& Sons, New York, New York.
+
+\bibitem[\protect\citeauthoryear{Anderson and Kuhn}{Anderson and
+  Kuhn}{1999}]{nato_soft_tempest}
+{\sc Anderson, R.~J.} {\sc and} {\sc Kuhn, M.~G.} 1999.
+\newblock Soft tempest---an opportunity for {N}{A}{T}{O}.
+\newblock In {\em Protecting NATO Information Systems in the 21st Century}.
+  NATO Research \& Technology Organisation, Washington, D.C.
+
+\bibitem[\protect\citeauthoryear{Black}{Black}{1996}]{black}
+{\sc Black, U.} 1996.
+\newblock {\em Physical Layer Interfaces and Protocols\/}, 2nd ed.
+\newblock IEEE Computer Society Press, Los Alamitos, California.
+
+\bibitem[\protect\citeauthoryear{Common Criteria Project Sponsoring
+  Organizations}{Common Criteria Project Sponsoring
+  Organizations}{1999}]{common_criteria}
+Common Criteria Project Sponsoring Organizations 1999.
+\newblock {\em Common Criteria for Information Technology Security Evaluation}.
+\newblock Common Criteria Project Sponsoring Organizations.
+\newblock CCIMB-99-031, Version 2.1.
+
+\bibitem[\protect\citeauthoryear{Electronic Industries Association, Engineering
+  Department}{Electronic Industries Association, Engineering
+  Department}{1991}]{eia_tia_232_e}
+Electronic Industries Association, Engineering Department 1991.
+\newblock {\em Interface Between Data Terminal Equipment and Data
+  Circuit-Terminating Equipment Employing Serial Binary Data Interchange}.
+\newblock Electronic Industries Association, Engineering Department.
+\newblock EIA/TIA-232-E.
+
+\bibitem[\protect\citeauthoryear{EXFO Electro-Optical Engineering, Inc.}{EXFO
+  Electro-Optical Engineering, Inc.}{1999}]{exfo_data_sheet}
+EXFO Electro-Optical Engineering, Inc. 1999.
+\newblock {\em LFD-100 Live Fiber Detector}.
+\newblock EXFO Electro-Optical Engineering, Inc.
+\newblock Data sheet SPLFD100.4AN.
+
+\bibitem[\protect\citeauthoryear{Fites and Kratz}{Fites and
+  Kratz}{1993}]{fites_and_kratz}
+{\sc Fites, P.} {\sc and} {\sc Kratz, M.~P.} 1993.
+\newblock {\em Information Systems Security: A Practitioner's Reference}.
+\newblock Van Nostrand Reinhold, New York, New York.
+
+\bibitem[\protect\citeauthoryear{Gagliardi}{Gagliardi}{1995}]{gagliardi}
+{\sc Gagliardi, R.} 1995.
+\newblock {\em Optical Communications\/}, 2nd ed.
+\newblock John Wiley \& Sons, New York, New York.
+
+\bibitem[\protect\citeauthoryear{Garfinkel}{Garfinkel}{1994}]{pgp}
+{\sc Garfinkel, S.} 1994.
+\newblock {\em PGP: Pretty Good Privacy}.
+\newblock O'Reilly \& Associates, Sebastopol, California.
+
+\bibitem[\protect\citeauthoryear{Hewlett--Packard Company}{Hewlett--Packard
+  Company}{1993a}]{hp_led_data_sheet}
+Hewlett--Packard Company 1993a.
+\newblock {\em HFBR-4663 Single Chip 10BASE--FL Transceiver Technical Data}.
+\newblock Hewlett--Packard Company.
+\newblock Data sheet 5091-7391E.
+
+\bibitem[\protect\citeauthoryear{Hewlett--Packard Company}{Hewlett--Packard
+  Company}{1993b}]{hp_fiber_optic_data_sheet}
+Hewlett--Packard Company 1993b.
+\newblock {\em Low-Cost Fiber-Optic Links for Digital Applications up to 155
+  MBd}.
+\newblock Hewlett--Packard Company.
+\newblock Application Bulletin 78, 5091-9102E.
+
+\bibitem[\protect\citeauthoryear{Hodara}{Hodara}{1991}]{hodara_1991}
+{\sc Hodara, H.} 1991.
+\newblock Secure fiberoptic communications.
+\newblock In {\em Proceedings of Symposium on Electromagnetic Security for
+  Information Protection}. Fondazione Ugo Bordoni, Rome, Italy.
+
+\bibitem[\protect\citeauthoryear{Johnson}{Johnson}{1995}]{pulse_stretcher}
+{\sc Johnson, P.} 1995.
+\newblock Circuit adapts signals for visual perception.
+\newblock {\em Electronic Design News\/}~{\em 40,\/}~21 (12 October), 104.
+
+\bibitem[\protect\citeauthoryear{Kuhn}{Kuhn}{2002}]{markus}
+{\sc Kuhn, M.~G.} 2002.
+\newblock Optical time-domain eavesdropping risks of {C}{R}{T} displays.
+\newblock In {\em Proceedings of the 2002 IEEE Symposium on Security and
+  Privacy}. IEEE Computer Society, Oakland, California.
+
+\bibitem[\protect\citeauthoryear{Kuhn and Anderson}{Kuhn and
+  Anderson}{1998}]{kuhn_and_anderson}
+{\sc Kuhn, M.~G.} {\sc and} {\sc Anderson, R.~J.} 1998.
+\newblock Soft tempest: Hidden data transmission using electromagnetic
+  emanations.
+\newblock In {\em Proceedings of Information Hiding, Second International
+  Workshop}, {D.~Aucsmith}, Ed. Springer--Verlag, Portland, Oregon, 15--17.
+
+\bibitem[\protect\citeauthoryear{Lampson}{Lampson}{1973}]{lampson}
+{\sc Lampson, B.~W.} 1973.
+\newblock A note on the confinement problem.
+\newblock {\em Comm.\ ACM\/}~{\em 16,\/}~10 (October), 613--615.
+
+\bibitem[\protect\citeauthoryear{Lancaster}{Lancaster}{1980}]{ttl_cookbook}
+{\sc Lancaster, D.} 1980.
+\newblock {\em TTL Cookbook}.
+\newblock Howard W.\ Sams, Indianapolis, Indiana.
+
+\bibitem[\protect\citeauthoryear{Lathrop}{Lathrop}{1992}]{lathrop}
+{\sc Lathrop, D.~L.} 1992.
+\newblock Security aspects of wireless local area networks.
+\newblock {\em Computers \& Security\/}~{\em 11}, 421--426.
+
+\bibitem[\protect\citeauthoryear{McCarthy}{McCarthy}{2001}]{McCarthy}
+{\sc McCarthy, D.~C.} 2001.
+\newblock Faster vs. denser: Networks reach another crossroad.
+\newblock {\em Photonics Spectra\/}~{\em 35,\/}~9 (September), 110--118.
+
+\bibitem[\protect\citeauthoryear{Morris}{Morris}{1996}]{morris}
+{\sc Morris, J.} 1996.
+\newblock Re: blinking lights on computers.
+\newblock Article $\langle$55ni3a\$bm3\@top.mitre.org$\rangle$, in USENET
+  newsgroup alt.folklore.computers.
+
+\bibitem[\protect\citeauthoryear{National Computer Security Center}{National
+  Computer Security Center}{1988}]{ncsc_tg_004}
+National Computer Security Center 1988.
+\newblock {\em Glossary of Computer Security Terms}.
+\newblock National Computer Security Center.
+\newblock NCSC-TG-004, Version 1.
+
+\bibitem[\protect\citeauthoryear{National Computer Security Center}{National
+  Computer Security Center}{1993}]{ncsc_covert_channels_book}
+National Computer Security Center 1993.
+\newblock {\em A Guide to Understanding Covert Channel Analysis of Trusted
+  Systems}.
+\newblock National Computer Security Center.
+\newblock NCSC-TG-030, Version 1.
+
+\bibitem[\protect\citeauthoryear{National Security Agency}{National Security
+  Agency}{1992}]{NACSIM_5000}
+National Security Agency 1992.
+\newblock {\em NACSIM 5000 TEMPEST Fundamentals}.
+\newblock National Security Agency, Fort George G.\ Meade, Maryland.
+\newblock \url{http://cryptome.org/nacsim-5000.htm}.
+
+\bibitem[\protect\citeauthoryear{National Security Agency}{National Security
+  Agency}{1994}]{shielded_enclosures}
+National Security Agency 1994.
+\newblock {\em Specification NSA No. 94-106, Specification for Shielded
+  Enclosures}.
+\newblock National Security Agency, Fort George G.\ Meade, Maryland.
+\newblock \url{http://cryptome.org/nsa-94-104.htm}.
+
+\bibitem[\protect\citeauthoryear{National Security Agency}{National Security
+  Agency}{1995}]{NSTISSAM}
+National Security Agency 1995.
+\newblock {\em TEMPEST/2-95 Red/Black Installation Guidance}.
+\newblock National Security Agency, Fort George G.\ Meade, Maryland.
+\newblock \url{http://cryptome.org/tempest-2-95.htm}.
+
+\bibitem[\protect\citeauthoryear{Paradyne Corporation}{Paradyne
+  Corporation}{1985}]{Paradyne1985}
+Paradyne Corporation 1985.
+\newblock {\em InfoLock Model 2811-11 Installation and Operation Manual\/}, 1st
+  ed.
+\newblock Paradyne Corporation.
+\newblock 2811-A2-GN32-00.
+
+\bibitem[\protect\citeauthoryear{Perry}{Perry}{1995}]{led_shipments}
+{\sc Perry, T.~S.} 1995.
+\newblock M.\ {G}eorge {C}raford.
+\newblock {\em IEEE Spectrum\/}~{\em 32,\/}~2 (February), 52--55.
+
+\bibitem[\protect\citeauthoryear{Petitcolas, Anderson, and Kuhn}{Petitcolas
+  et~al\mbox{.}}{1999}]{information_hiding}
+{\sc Petitcolas, F.~A.}, {\sc Anderson, R.~J.}, {\sc and} {\sc Kuhn, M.~G.}
+  1999.
+\newblock Information hiding---a survey.
+\newblock {\em Proceedings of the IEEE\/}~{\em 87,\/}~7 (July), 1062--1078.
+
+\bibitem[\protect\citeauthoryear{Proakis and Salehi}{Proakis and
+  Salehi}{1994}]{proakis}
+{\sc Proakis, J.~G.} {\sc and} {\sc Salehi, M.} 1994.
+\newblock {\em Communication Systems Engineering}.
+\newblock Prentice-Hall, Englewood Cliffs, New Jersey.
+
+\bibitem[\protect\citeauthoryear{Proctor and Neumann}{Proctor and
+  Neumann}{1992}]{pgn_covert_channels_paper}
+{\sc Proctor, N.~E.} {\sc and} {\sc Neumann, P.~G.} 1992.
+\newblock Architectural implications of covert channels.
+\newblock In {\em Proceedings of the Fifteenth National Computer Security
+  Conference}. National Institute of Standards and Technology, National
+  Computer Security Center, Baltimore, Maryland, 28--43.
+
+\bibitem[\protect\citeauthoryear{Russell and Gangemi}{Russell and
+  Gangemi}{1991}]{russell_and_gangemi}
+{\sc Russell, D.} {\sc and} {\sc Gangemi, G.} 1991.
+\newblock {\em Computer Security Basics}.
+\newblock O'Reilly \& Associates, Sebastopol, California.
+
+\bibitem[\protect\citeauthoryear{Smulders}{Smulders}{1990}]{smulders}
+{\sc Smulders, P.} 1990.
+\newblock The threat of information theft by reception of electromagnetic
+  radiation from {R}{S}-232 cables.
+\newblock {\em Computers \& Security\/}~{\em 9,\/}~1, 53--58.
+
+\bibitem[\protect\citeauthoryear{Stephenson}{Stephenson}{1999}]{cryptonomicon}
+{\sc Stephenson, N.} 1999.
+\newblock {\em Cryptonomicon}.
+\newblock Avon Books, New York.
+
+\bibitem[\protect\citeauthoryear{Telecommunications Industry
+  Association}{Telecommunications Industry Association}{1996}]{tia_eia_404_b}
+Telecommunications Industry Association 1996.
+\newblock {\em Standard for Start--Stop Signal Quality for Non-Synchronous Data
+  Terminal Equipment}.
+\newblock Telecommunications Industry Association.
+\newblock TIA/EIA-404-B.
+
+\bibitem[\protect\citeauthoryear{Umphress and Williams}{Umphress and
+  Williams}{1985}]{umphress_and_williams}
+{\sc Umphress, D.} {\sc and} {\sc Williams, G.} 1985.
+\newblock Identity verification through keyboard characteristics.
+\newblock {\em Int.\ J.\ Man--Machine Studies\/}~{\em 23}, 263--273.
+
+\bibitem[\protect\citeauthoryear{United States Department of Defense}{United
+  States Department of Defense}{1985}]{orange_book}
+United States Department of Defense 1985.
+\newblock {\em Trusted Computer System Evaluation Criteria}.
+\newblock United States Department of Defense.
+\newblock DOD 5200.28-STD.
+
+\bibitem[\protect\citeauthoryear{United States Department of Defense}{United
+  States Department of Defense}{1987}]{mil_hdbk_232_a}
+United States Department of Defense 1987.
+\newblock {\em Red/Black Engineering--Installation Guidelines}.
+\newblock United States Department of Defense.
+\newblock MIL-HDBK-232A.
+
+\bibitem[\protect\citeauthoryear{van Eck}{van Eck}{1985}]{van_Eck}
+{\sc van Eck, W.} 1985.
+\newblock Electromagnetic radiation from video display units: An eavesdropping
+  risk?
+\newblock {\em Computers \& Security\/}~{\em 4}, 269--286.
+
+\bibitem[\protect\citeauthoryear{van Gilluwe}{van Gilluwe}{1994}]{van_gilluwe}
+{\sc van Gilluwe, F.} 1994.
+\newblock {\em The Undocumented PC}.
+\newblock Addison--Wesley Publishing Company, Reading, Massachusetts.
+
+\bibitem[\protect\citeauthoryear{Wilkins}{Wilkins}{1641}]{wilkins_1641}
+{\sc Wilkins, J.} 1641.
+\newblock {\em Mercury, or the Secret and Swift Messenger}.
+\newblock I.\ Norton, London.
+
+\bibitem[\protect\citeauthoryear{Wray}{Wray}{1991}]{wray}
+{\sc Wray, J.~C.} 1991.
+\newblock An analysis of covert timing channels.
+\newblock In {\em Proceedings of the 1991 IEEE Computer Society Symposium on
+  Research in Security and Privacy}. IEEE Computer Society, Oakland,
+  California, 2--7.
+
+\bibitem[\protect\citeauthoryear{Wright}{Wright}{1987}]{wright}
+{\sc Wright, P.} 1987.
+\newblock {\em Spycatcher: The Candid Autobiography of a Senior Intelligence
+  Officer}.
+\newblock Viking Press, New York, New York.
+
+\end{thebibliography}

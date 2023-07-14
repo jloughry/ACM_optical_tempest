@@ -1,0 +1,487 @@
+% 3456789012345678901234567890123456789012345678901234567890123456789012
+%        1         2         3         4         5         6         7
+%
+% Format: LaTeX
+%
+% For information about this file, contact the author by email at
+% loughry@qwest.net, or by telephone: +1 303 224 9618 (home), or
+% +1 303 971 2951 (office).  The time zone is GMT minus 7 hours.
+%
+% Last modified 05 December 2000 by Joe Loughry.
+%
+\documentclass[twocolumn]{article}
+\usepackage{usenix,url,epsf}
+\begin{document}
+\bibliographystyle{plain}
+
+\title{Information Leakage from Optical Emanations}
+
+\author{J. Loughry\thanks{Department~3740, Mail Stop~X-3741, P.O.
+Box~179, Denver, Colorado 80201-1079 USA.} \\
+Lockheed Martin Space Systems}
+
+\date{05 December 2000}
+
+% ----------------------------------------------------------------------
+
+\begin{abstract}
+
+The SIGINT community has overlooked a potential source of compromising emanations.  LED (light emitting diode) status indicators on data communication devices are shown to broadcast under certain conditions a strong, modulated optical signal containing a complete copy of all data processed by the device.  The attacker gains access to all data being handled by the device.  Physical access is not required.  Experiments show that it is possible to intercept data under realistic conditions at a considerable distance.  Several different kinds of devices, including modems, routers, and data encryption systems, were found to be vulnerable.  Some possible countermeasures, including required design changes, are described that will block these emanations.
+
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+For years the SIGINT\footnote{SIGnals INTelligence} community has overlooked a particular source of compromising emanations: modulated optical radiation from LED (light emitting diode) status indicators.  Data communication equipment, and even data encryption devices, sometimes emit modulated optical signals that carry enough information for an eavesdropper to reproduce the entire data stream being processed by a device.  No physical access is required.  It requires little apparatus, can be done at a considerable distance, and is completely undetectable.  In effect, LED indicators are like little free-space optical data transmitters, like fiber optics but without the fiber.
+
+Experiments conducted on a wide variety of devices show evidence of exploitable compromising emanations in 13\% of devices tested.  With inexpensive apparatus, we show it is possible to intercept and read data under realistic conditions from at least across the street.  (See Figure \ref{example_of_optical_emanations_figure}.)  Protecting against the threat is relatively straightforward, but ideally involves a design change to vulnerable equipment.
+
+\begin{figure}[htbp]
+\centerline{\epsfysize=1.5in \epsffile{figures/Figure_1.eps}}
+\caption{Compromising optical emanations.  The upper trace shows the
+waveform of the $\pm15$V EIA/TIA-232-E serial data signal.  The lower
+trace shows modulated optical radiation intercepted 5 m from the
+device.}
+\label{example_of_optical_emanations_figure}
+\end{figure}
+
+\subsection{Paper Organization}
+
+The first part of this paper reviews the idea of compromising emanations, and gives an overview of what information is to be found in the literature.  Next comes a technical explanation of why compromising optical emanations exist, and some of their properties.  A series of experiments is then described, together with results that were found.  Finally, some possible countermeasures are presented, along with directions for future work. Related work on active attacks using optical emanations is presented in an appendix.
+
+\section{TEMPEST, EMSEC, and Compromising Emanations}
+
+{\it Compromising emanations} are defined in \cite{ncsc_tg_004} as ``Unintentional data-related or intelligence-bearing signals that, if intercepted and analyzed, disclose the information transmission received, handled, or otherwise processed by any information processing equipment. See {\it TEMPEST}.
+
+Thorough discussion of compromising emanations and EMSEC (emanations security) in the open literature is limited.  The information that is available tends to exhibit a strong bias toward study of radio frequency (RF) emanations from computers and video displays.  Because of the high cost of equipment and the difficulty of intercepting and exploiting RF emanations, it is believed that attacks against compromising emanations have been limited primarily to high-value sources of information, such as military targets and cryptologic systems.  Outside of non-specific descriptions of TEMPEST-hardened computers and discussion of electromagnetic compatibility (EMC) rules, physics of Faraday cages and grounding (usually in conjunction with explanations of nuclear electromagnetic pulse (EMP) effects), and occasional mention of the problem of conducted emanations in power lines or structural members, most discussions end up in the same place: virtually all of the really useful information on compromising emanations is classified.
+
+\subsection{Related Work}
+
+Only two authors have presented concrete examples of compromising emanations found in the real world.  Smulders found RF emanations coming from unshielded or poorly shielded serial cables, and van~Eck showed that cathode-ray tube video displays can be read at a distance by intercepting and analyzing their RF emanations. \cite{smulders, van_Eck}
+
+With the exception of ``shoulder surfing'' and other visual surveillance of video displays, almost no mention of signals in the optical spectrum was found in the literature, outside of fiber optics.  But the existence of fiber optic test equipment that can nonintrusively detect live fibers---and determine the direction and power of an optical signal therein---suggests that fiber optics may not be, as is commonly believed, all that difficult to tap. \cite{exfo_data_sheet}
+
+Of course, free-space optical data links are prone to interception, and for this reason wireless data links (both laser and RF) are typically encrypted.  But with the exception of one work of fiction, in which a character uses keyboard LEDs as a covert channel\footnote{Also see the Appendix of this paper.} \cite{cryptonomicon}, a thorough search of the literature revealed no mention of the risk of interception of data from optical emanations of LED status indicators.
+
+\section{Compromising Optical Emanations}
+
+\begin{quotation}
+``The [IBM] 360 had walls of lights; in fact, the Model 75 had so many that the early serial number machines would blow the console power supply if the `Lamp Test' button was pressed.'' {\it Joe Morris / MITRE} \cite{morris}
+\end{quotation}
+
+\subsection{Rationale for the Existence of Compromising Optical Emanations}
+
+Light emitting diodes are cheap, reliable, bright, and ubiquitous.  They are used in nearly every kind of electronic device, anywhere a bright, easy-to-see indicator is needed.  They are commonly seen on every sort of data communication equipment.  According to industry reports, some 20--30 billion LEDs are shipped annually. \cite{led_shipments}
+
+LEDs are also fast; that is, they typically exhibit a quick response to changes in the applied drive voltage.  So quick are LEDs, in fact, that their close cousins are used as transmitters in fiber optic links at speeds in excess of 100 million bits per second. \cite{hp_fiber_optic_data_sheet}
+
+Although fast response time is oftentimes a desirable quality in a display, LEDs are fast enough to follow the individual bit transitions of a serial data transmission.  Herein lies the problem.  If certain LED indicators are visible to an attacker, even from a long distance away, it becomes possible for that person to read the data going through that device.  One of the advantages of LEDs is that they can be read from across a room.  The disadvantage is that they can be read from across the street.
+
+The brightness of LED displays would not be a problem if it were not for the way they interact with serial data transmissions.  Consider the EIA/TIA-232-E waveform depected in Figure \ref{idealized_led_response_figure}.
+
+\begin{figure}[htbp]
+\centerline{\epsfysize=1.5in \epsffile{figures/Figure_2.eps}}
+\caption{Idealized LED response.  Upper waveform shows the EIA/TIA-232-E
+serial data signal; the lower waveform illustrates the optical output
+measured at the receiver.}
+\label{idealized_led_response_figure}
+\end{figure}
+
+The EIA/TIA-232-E standard (formerly known as RS-232) defines a bit-serial format using bipolar encoding and non-return-to-zero---level (NRZ-L) signaling.  Bits are transmitted asynchronously, with framing (timing) bits embedded in the serial data stream for synchronization between sender and receiver.  During periods when no data are being transmitted, the transmitter remains in the logical ``1’’ state.  The start of a new symbol is indicated by a momentary excursion to the logical ``0’’ state for one unit interval, called the {\it start bit}.  This is followed by a serial waveform consisting of a mutually agreed-upon number of data bits, sent least significant bit first.  Following the last data bit, the transmitter returns to the logical ``1’’ state for at least one unit interval, called the {\it stop bit}, in order to provide necessary contrast for the receiver to be able to recognize the beginning of the next start bit. \cite{eia_tia_232_e}
+
+EIA/TIA-232-E uses bipolar encoding, with a negative voltage signifying logical ``1’’ and a positive voltage used for logical ``0’’.  Usually, LEDs are wired to light up for a logical ``0’’ so that they flicker when bits are transmitted, and remain dark when the channel is idle.  The fact that the original signal is bipolar is immaterial.  {\it As long as it’s fast enough to faithfully reproduce the timing of bit transitions, the optical output of the LED will contain all of the information in the EIA/TIA-232-E signal.}
+
+LEDs cannot be directly connected to logic circuits, as they draw too much power.  For reasons of cost, the same high-speed gates (generally TTL and CMOS inverters) used to make logic circuits generally is used to power the LEDs as well.  This results in a perfect impedance match, an unobstructed path, for information to flow from the serial data channel to the optical output of the LED.  Because it wasn’t designed for the purpose, the actual optical signal may be be somewhat degraded (Figure \ref{actual_led_response_figure}), but LEDs and their associated driver circuitry are generally more than fast enough.
+
+\begin{figure}[htbp]
+\centerline{\epsfysize=1.5in \epsffile{figures/Figure_3.eps}}
+\caption{Relationship between the EIA/TIA-232-E serial data waveform
+and the resulting optical signal.  The slowness of the response time
+of the emitter is characteristic of a standard LED, but greatly
+exaggerated.}
+\label{actual_led_response_figure}
+\end{figure}
+
+High-speed modems employ complicated modulation schemes, including frequency, amplitude, and phase modulation, to maximize the available bandwidth on voice-grade telephone lines.  But this makes no difference---it is the relatively simple NRZ-L waveform of the EIA/TIA-232-E data signal that is modulated onto the LED.  NRZ-L signals are susceptible to noise, which is why other signaling methods, such as differential Manchester encoding, are most often used in long-distance digital commmunication systems.  To overcome the noise sensitivity of NRZ-L, additional redundancy is often introduced into the communication channel in the form of {\it channel encoding} \cite{proakis}  But parity checks, cyclic redundancy checking (CRC), and other error detection and correction methods may be used to increase the reliability of the system.  But it should be noted that these features are also available to an eavesdropper, who may use them to overcome the effects of a poor optical signal.
+
+As optical communication systems go, it must be recognized that status displays are highly suboptimal.  There are no beam-forming optics on the transmitting LED.  The luminous flux available from a single LED is extremely limited.  Buffer circuits used to drive LED indicators, while more than fast enough for their intended purpose, are not optimized for high-speed data transmission in the way that special-purpose circuits used in fiber optic transmitters are.  Practical optical data communication systems use laser transmitters, sophisticated encoding schemes, and coherent detectors that greatly improve signal recovery under noisy conditions.  \citr{gagliardi}  Our hypothetical eavesdropper would likely have to deal with off-axis aiming errors, high levels of optical background noise from artificial lighting, and lack of a priori knowledge of the specific bit rate and word length used by the target.  Nevertheless, experimentation shows that with a sensitive detector and telescopic optics, it is possible for an eavesdropper to recover a noisy analog waveform closely approximating the original digital data stream.  Once the received optical signal has been amplified, cleaned of noise, and fed to a UART (universal asunchronous receiver-transmitter, an inexpensive chip which serves as a ready-made solution to the problem of decoding a noisy signal), the original data can be easily recovered.
+
+Aside from other emanations that they might produce, other display technologies besides LED, such as incandescent and gas discharge lamps, vacuum fluorescent (VF), electroluminescent (EL), liquid crystal (LCD) and cathode ray tube (CRT) displays, are not fast enough to support compromising optical emanations at high data rates.
+
+\subsection{Classification of Optical Emanations}
+
+It is useful to consider a division of optical emanations into three broad classes according to the amount of information potentially carried to an adversary.  LED indicators that exhibit Class~$n$ behavior may be called Class~$n$ indicators.  Devices having at least one Class~II indicator, but no Class~III indicators, may be called Class~II devices; any device having at least one Class~III indicator is a Class~III device.  Class~III devices are the most interesting.
+
+{\bf Class~I} indicators are unmodulated.  The optical emanations they put out are constant, and correlated with the {\it state} of a device or communication channel.  Class~I indicators communicate at most one bit of information. An example would be a power-on indicator.
+
+{\bf Class~II} indicators are time-modulated, correlated with the {\it activity level} of a device or the amount of traffic on a communication channel.  Class~II indicators provide an adversary with considerably more information; while the content of the data being processed by a device is not known, the fact that something is being transmitted, and a rough idea of where and how much, together make critical circuits vulnerable to ``traffic analysis.’’  Examples of Class~II indicators include the ``Work Station Active'' light on an IBM 5394 Control Unit, LEDs on ethernet cards, and the front-panel lights on a Cisco router.
+
+In both the Class~I and Class~II cases, the adversary gets no more information than the operator does; the indicator is being used in the manner for which it was intended, except that the eavesdropper is unauthorized, and reading the information at a distance.
+
+Finally, a much more interesting form of optical emanations is {\bf Class~III}. These are modulated optical emanations that are strongly correlated with the {\it content} of data being transmitted or received.  If the correlation is suffiently good, then from analysis of Class~III optical emanations it is possible to recover the original data stream. Examples of Class~III emanations are relatively common; the ``Transmitted Data'' and ``Received Data'' indicators on modem are most often Class~III.
+
+Class~III devices arise when the designer of device inadvertently specifies a Class~III indicator where a Class~II indicator was intended.  Usually only an activity indication is desired.  It is not clear whether there is {\it any} situation where a Class~III indicator would truly be desired, except in the case of an extremely low speed communication channel, where individual bit transitions could be observed by eye and counted.  In most cases the activity of a data communication channel occurs too fast for the human eye to follow.  In the real world, an oscilloscope is a much more useful tool than a Class~III indicator.
+
+A potentially dangerous Class~III indicator can be converted to a safer and more useful Class~II by the addition of a pulse stretching circuit. \cite{pulse_stretcher} (See the section on Countermeasures below.)
+
+\section{Eavesdropping Experiments}
+
+Three series of experiments were run.  First, a survey was made of a large number of devices, looking for evidence of Class~III behavior.  Then long-range testing was done on a selection of devices, to prove the feasibility of interception under realistic conditions.  Finally, examination was made of the internals of several devices, in an attempt to understand why these emanations occur.
+
+\subsection{Hypothesis}
+
+The null hypothesis was “it is not possible to recover data from optical emanations.”  The null hypothesis was disproved by experiment.
+ 
+\subsection{Experimental Design and Methodology}
+
+A total of 39 devices containing 156 unique LED indicators were identified for this study.  The devices selected for testing were chosen to represent a wide variety of information processing technology, including low-speed and high-speed communication devices, local-area network (LAN) and wide-area network (WAN) devices, PC and mainframe computers, mass storage devices, and peripheral input/output devices.
+
+Photometric measurements were taken on an optical bench of a standard red LED driven by a square wave signal.  These measurements were used to establish a baseline.  Following this step, each of the 156 LED indicators identified in the survey was examined for evidence of Class~III behavior.
+
+Measurements were made of individual LED indicators by placing the detector in contact with each LED.  A dual-trace oscilloscope was used to observe the signal from the detector.  To visualize the corresponding data stream, a breakout box was inserted into the data path, with the original data displayed alongside the optical signal from the detector. 
+ 
+The detector used was a high-speed, large-area silicon PIN (positive-intrinsic-negative) photodiode with an active area of 1 $\mathrm{mm}^2$.  The responsivity of this detector is 0.45 amperes/watt (A/W) at a nominal wavelength of 830 nm with a spectral response of 350--1100 nm.  The photocurrent from the detector was amplified by a transimpedance photodiode amplifier operating in zero-bias mode.  Waveforms were observed with a 200 MHz digital oscilloscope.  The bandwidth of the photodiode amplifier is inversely proportional to the gain setting; at a gain factor of $10^7$ volts/ampere (V/A), the bandwidth of the detector-amplifier system is only 10 KHz.  Therefore, for most measurements, the amplifier was operated at a gain setting of $10^4$ V/A, yielding an overall detector-amplifier system bandwidth of 45 KHz.  For higher-speed measurements, the photodiode was connected directly to the input amplifier of the oscilloscope and operated in the quadrant IV (photovoltaic) region.  Limited sensitivity in this configuration necessitated placing the detector almost directly in contact with the LED.  However, the greatly increased bandwidth of the detector-amplifier system allowed for examination of very high speed devices for evidence of signals in the MHz range.
+
+\subsubsection{Range Testing}
+
+Long-range optical interception experiments were conducted with a small number of representative devices.  The ANP Model 100 short-haul modem, Hayes Smartmodem OPTIMA 96 and 144, and a Practical Peripherals PM14400FXMT fax modem were examined.
+
+The same photodetector and amplifier system described in the previous section was used.  The detector was mounted on an optical bench at the focus of an optical system consisting of a 100 mm diameter, $f2.5$ converging lens, aperture stop, and a 650 nm optical bandpass filter, which was chosen to match the spectral output of a standard visible red LED.
+
+The device under test was placed a measured distance away, and connected to an identical unit at the test station through a length of unshielded twisted pair (UTP) cable.  The image from a single LED indicator on the device under test was adjusted to completely cover the detector's active area.  Test transmissions were made to each device, and the EIA/TIA-232-E and optical waveforms captured for analysis.
+
+\subsubsection{Experimental Methodology}
+
+Three independent variables and one dependent variable were identified. The independent variables were: (1) the separation distance between the detector and the device under test, (2) the data transmission rate, and (3) ambient lighting conditions on the test range.  The dependent variable was the correlation between the received optical signal and the original EIA/TIA-232-E waveform captured at the same time.  The independent variables were varied according to a formal test matrix.  Separation distance was varied from 5 meters to 38 meters (the maximum dimension of the test range) in increments of 5 meters during the test.  At each measured distance, test transmissions were made at data rates of 300, 600, 1200, 2400, 4800, 9600, and 19 200 bits per second.  The optical waveform from the detector amplifier was compared to the original EIA/TIA-232-E signal waveform obtained from a breakout box inserted in the data path between the data generator and the device under test.  After each series of measurements over the full range of distances, the ambient lighting conditions on the test range were changed.  Lighting conditions tested included daylight office conditions (sunlight through windows plus artificial light), normal daytime fluorescent office lighting, nighttime office lighting (scattered fluorescent lights plus some light entering through windows from the streetlights outside), and as a control, a darkened, windowless room.  An optical bandpass filter was used in some tests in an attempt to reduce the level of background radiation and determine if detector overload was an important factor.  All tests were conducted indoors.
+
+\subsection{Experimental Results}
+
+Results of the survey of devices are shown in Table \ref{survery_of_devices_table}.  Of 37 devices tested, 13\% showed evidence of Class~III optical emanations.
+
+\begin{table}[htbp]
+\centering
+\caption{Results of the survey of devices}
+\label{survey_of_devices_table}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Device & Class~I & Class~II & Class~3 \\
+\hline
+InfoLock 2811 & $\bullet$ & \mbox{ } & $\bullet$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Survey of Devices}
+
+Dial-up and leased-line modems were found to faithfully broadcast all data transmitted and received by the device.  Only one device did not exhibit Class~III emanations: the Practical Peripherals PM14400FXMT fax modem.  The shortest pulse duration measured from this device was 20 ms, even at high data rates.
+
+None of the local area network (LAN) interface cards tested, including 10 Mbps Ethernet and 16 Mbps Token Ring adapters, were found to broadcast any recognizable data.  Examination of the data sheet for a chip set used in fiber optic ethernet devices reveals a possible reason for this finding.  According to \cite{hp_led_data_sheet}, LED indicators for {\tt transmit}, {\tt receive}, and {\tt collision} are filtered through pulse stretching circuits to make their activity more visible.  The pulse stretcher extends the on-time of LED indicators to a minimum of several milliseconds.  This makes short pulses easier to see, but severely limits the bandwidth of the LED from the perspective of compromising optical emanations.  All of the Ethernet and Token Ring devices examined showed similar behavior in this regard.
+
+Both of the routers tested (Cisco Series 4000 and 7000 units equipped with Token Ring, Fast Serial and FDDI Interface Processors) were found to broadcast Class~III emanations from Fast Serial interface adapter LEDs on their back panels.  Front-panel activity indicators, while suggestive, exhibited a typical minimum pulse width on the order of 20 milliseconds, indicating that they are merely Class~II.  None of the devices showed any evidence of Class~III emanations from LAN traffic on their front-panel indicators.
+
+Two T1 (1.554 Mbps) Data Service Unit/Channel Service Unit (CSU/DSU) devices were tested.  Neither unit showed evidence of Class~III emanations.  Low-speed CSU/DSU devices, however, behaved similarly to modems.  All showed usable Class~III emanations in both synchronous and asynchronous operation.
+
+Intelligent serial data switches (printer sharing devices) and a serial data logger behaved similarly to the modems in this test.  Data from attached devices showed up in the form of Class~III optical emanations.
+
+Mass storage devices such as hard disks and tape transports are usually equipped with device activity indicators.  It was hypothesized that these LEDs might be related to data transfers to or from the storage device.  A variety of PC and minicomputer hard disk drives, floppy diskette drives, CD-ROM drives and tape transports were tested.  None were found to emit anything other than Class~II optical emanations.
+ 
+Miscellaneous devices tested included the ``Processor Activity’’ indicator on an IBM AS/400 computer, the ``Work Station Active’’ indicator on an IBM 5394 terminal controller, and control panel indicators on IBM and Hewlett-Packard laser printers.  All of these devices were found to be Class~II at most.
+ 
+No significant difference was found between the observability of 5mm (T-$1\frac{3}{4}$) LEDs and the much smaller surface-mount components.  The absolute brightness levels of these LEDs are comparable.  
+
+\subsubsection{The InfoLock 2811 Data Encryptor}
+
+It appears that some types of data encryption devices, in particular standalone data encryptors and modems with built-in link encryption capability, may emit optical signals in unencrypted form.
+
+Figure \ref{infolock_2811_figure} is a detail taken from the {\it Installation and Operation Manual} for the Paradyne InfoLock model 2811-11 DES encryptor.  The InfoLock 2811 is a standalone DES (Data Encryption Standard) link encryptor of the type used by financial institutions to encrypt data on their wire transfer and automated teller machine (ATM) networks.\cite{Paradyne1985}
+
+\begin{figure}[htbp]
+\centerline{\epsfysize=1.5in \epsffile{figures/Figure 4.eps}}
+\caption{Detail taken from the {\it Installation and Operation Manual} for the InfoLock 2811-11 DES encryptor.}
+\label{infolock_2811_figure}
+\end{figure}
+
+The figure shows a portion of the data path between the input (DTE, or data terminal equipment) of the encryption function, and the output (DCE, or data communications equipment) side.  The DTE interface is normally connected to a terminal or computer; the DCE interface is connected through a modem to the communications channel.  The DTE side is unencrypted; the DCE side is encrypted.  It appears that the RS-232 status indicators are located on the red, or {\it unencrypted} side of the InfoLock 2811.  Consequently, the LEDs will display all of the data passing through the device (in either direction) in its unencrypted, or plaintext form.
+
+It is believed that all link encryption devices with LED indicators are potentially vulnerable to this threat.  Stand-alone data encryptors, while ensuring that any optical emanations produced by the downstream modem are securely encrypted, are themselves vulnerable to compromising optical emanations.  This failure mode results not only in broadcast of cleartext, but potentially facilitates a known-plaintext attack against the sender’s private key.  The determination of whether or not a particular encryption unit is vulnerable to compromising optical emanations will require examination of the internals of each device.
+
+\subsubsection{Range Testing}
+
+Results of this experiment are shown in Figure \ref{three_captures_in_a_row}  Note the increasing signal degradation with distance.  There was a high correlation found between the EIA/TIA-232-E waveform and the received optical signal, as shown in Figure \ref{correlation_figure}.  For comparison, the correlation between the upper trace in the first part of Figure \ref{three_captures_in_a_row} and a random signal of similar amplitude to the optical signal was -0.02558.  High noise levels in the recorded waveforms are apparently due to a combination of detector shot noise, thermal noise in the amplifier, and quantization noise in the oscilloscope front end. 
+
+\begin{figure}[htbp]
+\centerline{\epsfysize=1.5in \epsffile{figures/Figure_5.eps}}
+\caption{Degradition of the optical signal with increasing distance
+from the target.  Distance was varied from 10 m, 20 m, 30 m.}
+\label{three_captures_in_a_row}
+\end{figure}
+
+\begin{figure}[htbp]
+\centerline{\epsfysize=1.5in \epsffile{figures/Figure_6.eps}}
+\caption{Correlation between original EIA/TIA-232-E data signal and
+received optical signal for distances of 5 m, 10 m, 20 m, and 30 m.  See
+Figure \ref{example_of_optical_emanations_figure} and Figure \ref{three_captures_in_a_row}.}
+\label{correlation_figure}
+\end{figure}
+
+\section{Interpretation of Results}
+
+The null hypothesis was disproved.
+
+Class~III emanations were found only in data communication devices, but not all data communication devices were Class~III.  In particular, none of the LAN cards tested were found to exhibit Class~III behavior (although most of them were Class~II).  No data storage device was found to be Class~III.  The design flaw in the InfoLock 2811 encryption device is particularly disturbing.
+
+Optical background noise from artificial sources proved to be a significant problem.  Sources of low-frequency noise (120~Hz and below) include incandescent, fluorescent, mercury vapor and sodium vapor lamps; high-frequency noise sources include industrial fluorescent lighting and compact fluorescent lights.  Sunlight, while dwarfing in brightness the artificial sources, contributes only a DC component, and therefore is much easier to filter.  Artificial lighting sources proved to be a pervasive and difficult-to-eliminate source of problems, precisely because they contribute large amounts of amplitude modulated noise containing strong harmonics in precisely the range of interest.  In the United States, the standard 60~Hz alternating current (AC) electrical power supply leads to a characteristic noise component at 120~Hz.  Most common data transmission rates are multiples of this frequency, complicating recovery of the data.
+
+Digital signal processing techniques can help.  By using a low-pass filter to isolate the 120~Hz component of the received optical signal, the noise can be isolated and subtracted from the noisy signal, yielding a new version of the signal that lacks the 120~Hz component.  Results of experiments in this area were very encouraging.  Figure \ref{noise_removal_figure} shows a simulated example of noise removal by digital signal processing (DSP), based on experimental data.  Experiments using analog electronic filters were also encouraging.
+
+\begin{figure}[htbp]
+\centerline{\epsfysize=1.5in \epsffile{figures/Figure_7.eps}}
+\caption{Simulated removal of 120~Hz noise by digital signal processing}
+\label{noise_removal_figure}
+\end{figure}
+
+The limiting factors in long-range interception seems to be the optics and the detector-amplifier system.  A larger aperture and a narrower field of view are both required.  It is believed that, out to a range of at least several hundred meters, the optical flux available is well within the capability of the detector.  Clearly, interception of data at longer ranges is feasible.
+
+\section{Countermeasures}
+
+A contributing factor to the threat of optical interception is the historical tendency to locate computers and data communication equipment in environmentally controlled ``glass houses'' which provide no barrier to the escape of optical radiation.  Clearly this must now be considered a threat.
+
+Examination of lighted windows of high-rise office buildings in the evening hours will reveal a rich variety of equipment racks with LED indicators in view.  Line-of-sight access is surprisingly easy to find.  Fortunately, optical emanations are easier to contain than RF; opaque materials will shield the radiation effectively.
+ 
+The best solution to the problem is a design change.  Black tape over the LEDs is effective, but inelegant.  Status displays might be designed to be deactivated when not in use (effectively making them Class~I).  Alternative display technologies, such as LCD and CRT displays, are inherently Class~II due to their relatively slow response times.  But other technologies are more expensive.  LEDs are fast, cheap, relatively low power indicators that can be read from across a room (a particular weakness of liquid crystal displays).  It is preferable to retain their desirable properties.
+
+A better solution may be seen in Figure \ref{pulse_stretcher_figure}.  The key is a violation of the worst-case jitter tolerance of the EIA/TIA-232-E standard.  If the minimum ON-time of an LED indicator is made greater than 1.5 times the unit interval of the data rate\footnote{or the slowest data rate expected on this channel}, then an attacker will be unable to recover sufficient information to decode the signal.  The LED will flicker in response to a random data signal (anything other than an equal-duty-cycle square wave), and hence will still be useful as a Class~II activity indicator, while blocking a sufficent amount of information that an attacker cannot recover the original data from the emanations.  Even though it appears that at least one of the devices tested (the PM14400FXMT fax modem) actually does have a pulse stretcher on its status LEDs, it is believed that this was done to make the display easier to read, not for reasons of blocking compromising emanations.
+
+\begin{figure}[htbp]
+\centerline{\epsfysize=1.5in \epsffile{figures/Figure_8.eps}}
+\caption{Effect of a pulse stretcher between the data source and LED.  The small circle indicates the point at which an eavesdropper would incorrectly read the signal.  The effect is to convert a Class~III indicator to Class~II.  The indicator is still useful as an activity indicator, but the risk of significant information leakage is reduced.}
+\label{pulse_stretcher_figure}
+\end{figure}
+
+\section{Summary and Conclusions}
+
+Modulated optical radiation from LED status indicators appears to be a previously unrecognized source of compromising emanations.  This vulerability is exploitable at a considerable distance.  Primarily data communication equipment is affected, although data encryption devices also pose a risk of information leakage potentially leading to loss of plaintext and encryption keys.
+
+A taxonomy of optical emanations was developed according to the amount of ``useful’’ information available to an attacker.  Experiments showed that Class~III optical emanations, which should never be allowed, were present in 13\% of devices tested, and data could be read from these devices at a distance of at least 20 meters.  Countermeasures are possible that will convert a vulnerable Class~III indicator into the safer (but still useful) Class~II variety by inserting a pulse stretcher into the LED driver circuitry.
+
+\subsection{Conclusions}
+
+Theft of information by interception of optical emanations necessarily is limited to one-way---the intruder can only receive information.  However, login IDs and resusable passwords obtained in this fashion could be used to support a conventional attack.  As mentioned before, parity checking, CRC codes, and error detection and correction features embedded in the data stream are available to the eavesdropper, and can be of great benefit in helping to overcome the effects of a low-quality optical signal.
+
+Ironically, in the future it will be the simplest devices---low-speed, obsolete, insignificant parts of the network---that provide a gateway for intrusion.  In our experiments, it was relatively low-speed modems, routers, line drivers, and a printer sharing device that were found to be the most enthusiastic broadcasters of data.  Like the Purloined Letter, they hide in plain sight: a printer sharing unit, a tangle of remote office connections in the corner, a modem sitting next to a PC by the window.
+
+\subsection{Summary of Contributions}
+
+\begin{itemize}
+
+\item The existence of compromising optical emanations was proved.
+
+\item Successful exploitation, under realistic conditions, was demonstrated.
+
+\item A taxonomy of compromising optical emanations was developed.
+Some possible countermeasures were presented.
+
+\end{itemize}
+
+\subsection{Directions for Future Research}
+
+While no evidence was found of Class~III emanations from data storage devices, more investigation is needed to verify that disk and tape drive activity indicators experience no second-level effects due to insufficient power supply regulation.  And the wide variety and distribution of LAN cards suggests the possibility that at least one might show more than just Class~II activity on the LEDs.\footnote{LAN cards in PCs are particularly interesting, given that the LEDs are on the back panel; when the computer is located on a desk by the window, the LEDs are clearly visible outside.}
+
+Other possible sources of compromising optical emanations include leakage from improperly-terminated fiber optics or unconnected fiber optic ports.  Other forms of attack are possible, including active attacks via optically emitting bugs operating outside of the visible spectrum that would be missed by conventional (RF) countersurveillance scanners.  Or a passive collection system could operate over dark fiber, if the end of a fiber strand were exposed to optical emanations from other devices.
+
+Still unresolved is the question of whether the diffuse emanations from multiple comingled sources (that is, non-line-of-sight emanations) are resolvable.  A roomful of LED status indicators, even if not individually observable, nevertheless would fill an area with a diffuse optical signal.  Light leakage around a door, or a passive fiber optic tap, might provide an adversary with enough optical flux to begin to analyze it. The optical sum of multiple random square wave signals, whose amplitude, pulse width, and pulse repetition rate are unknown, yields a complex signal.  It is not known whether it is even theoretically possible to isolate individual signals under these conditions.
+
+\section{Acknowledgments}
+
+Annie Cruz of Washington Mutual Bank, Ed Telders of PEMCO, and Dr. David A. Umphress of Auburn University Department of Computer Science and Software Engineering provided valuable assistance with the preparation of this paper.
+
+\appendix
+
+\section{Active Attacks)
+
+(Or, the keyboard considered as an output device.)
+
+\subsection{Introduction}
+
+Not all sources of compromising optical emanations are naturally occurring.  We describe two implementations of a Trojan horse that manipulates the LEDs on a standard keyboard to implement a high-bandwidth covert channel.  This is an example of an {\it active attack}, against a device that is not normally vulnerable to compromising optical emanations.
+
+\subsection{Background Information}
+
+Ever since the standardization of computer keyboards to the IBM layout, most computer keyboards today have three LED indicators, for Caps Lock, Num Lock, and Scroll Lock.  Interestingly, the LEDs are not directly connected to the associated keys; in fact, the lights are software controlled.
+
+The PC keyboard is an intelligent device that communicates with the host computer over a bidirectional, synchronously clocked serial interface at approximately 10 000 bits per second.\footnote{The exact speed was found to vary among different computers.}  The simple communications protocol used is well documented. \cite{shoemaker}  Some operating systems provide the capability to control the keyboard indicators from a shell script; if not, then it is a relatively simple matter to program directly to the keyboard interface. \cite{van_gilluwe}
+
+The capacity of the keyboard interface channel far exceeds the requirements of even the fastest typist.  So long as the amount of data sent to the keyboard is limited so as not to interfere with processing of keystrokes, the excess bandwidth can be profitably employed by an attacker.
+
+A {\it covert channel} is a means of extracting data from a computer system in violation of the system security policy. \cite{lampson}  A {\it high-bandwidth} covert channel is considered to be one capable of transmitting data faster than 100 bits per second. \cite{orange_book, common_criteria} The covert channel described here has been demoonstrated to work at speeds from 150 to 10 000 bits per second.
+
+\subsection{Related Work}
+
+That keyboard LEDs can be manipulated has been known for a long time.  But the only description of a covert channel employing keyboard LEDs appears in the novel {\it Cryptonomicon}, in which a character employs the technique to extract a small amount of critical information from his computer despite being under continuous surveillance. \cite{cryptonomicon}
+
+\subsection{Software Attack}
+
+A covert channel running at up to 450 bits/sec was demonstrated on the IBM PC/AT, Compaq ProLinea (several models), and Sun SPARCstation 20 and ULTRA 1 workstations.  The attack was successful under MS-DOS, Microsoft Windows 3.1, 95, and 98, Windows NT 3.5 and 4.0, Solaris 2.5.1, Solaris 7, and Trusted Solaris 2.5 and 2.5.1.  A handful of machines could not be made to work, such as a Compaq LTE/Lite 486/25E notebook.
+
+We found that activity on a single keyboard LED at 150 bits/sec was not particularly noticeable during interactive use.  Employing more than one LED at a time increases the probability of discovery but offers other advantages.  If all three LEDs are modulated identically, the optical output of the transmitter is tripled, greatly increasing the useful range.  Alternatively, two or three bits could be transmitted in parallel, increasing the bandwidth of the covert channel to approximately 450 bits/sec.  Tests were run of asynchronous parallel transmission using three LEDs, synchronous serial transmission using one or two LEDs and a single or biphase clock, and differential Manchester encoding.  The latter yielded high reliability at the receiving end, but with all that activity on three LEDs, it was pretty noticeable to the operator that {\it something} strange was going on.
+
+\subsection{Hardware Attack}
+
+Similar results can be obtained through modification of the keyboard hardware.  Depending on the details of a particular keyboard, the modifications may be as simple as moving a single wire.  An IBM PC/AT keyboard was mofidied as an experiment.  The Scroll Lock LED was cross-connected to the {\tt keyboard data} signal, as shown in Figure \ref{keyboard_cross_connect_figure}  It was necessary to invert the {\it keyboard data} signal so that the LED would remain dark when the covert channel was idle.  Fortunately, the IBM design provided a ready-made solution in the form of an unused gate on one of the chips.  The optical output of the LED is now modulated directly by the 10 000 bits/sec serial data stream in the keyboard cable.  The Scroll Lock LED can be seen to flicker momentarily for any keyboard activity, but the effect is not very noticeable.  No software is required.
+
+\begin{figure}[htbp]
+\centerline{\epsfysize=1.5in \epsffile{figures/Figure_9.eps}}
+\caption{Modifications to the IBM PC/AT keyboard.}
+\label{keyboard_cross_connect_figure}
+\end{figure}
+
+Normal operation of the Scroll Lock LED is prevented, but Scroll Lock is not used very often.  By another fortuitous coincidence, the normal behavior of the keyboard LEDs during the power-on self test function is unaffected; and the functionality of the Scroll Lock key itself is also unchanged (except that the LED does not appear to work anymore, of course).
+
+Figure \ref{keyboard_intercept_figure} shows the optical waveform obtained from the keyboard with the modification of Figure \ref{keyboard_cross_connect_figure}.  The bandwidth of the resulting covert channel is greater than that of a software-only attack, but the information is in the form of keyboard scan codes, not ASCII.  It requires a bit of translation on the receiving end, but also yields more information; since accurate timing of both key-down and key-up events are reported, this method may provide enough information to compromise identity verification systems based on typing characteristics or generation of cryptographic keys. \cite{umphress_and_williams, pgp}
+
+\begin{figure}[htbp]
+\centerline{\epsfysize=1.5in \epsffile{figures/Figure_10.eps}}
+\caption{Optical signal obtained from the keyboard with the modifications of Figure \ref{keyboard_cross_connect_figure}.  Upper trace shows the intercepted optical signal; the lower two traces are the signal on the keyboard interface and the keyboard clock.}
+\label{keyboard_intercept_figure}
+\end{figure}
+
+\subsubsection{Improving the Bandwidth of the Covert Channel}
+
+It is not difficult to imagine how a small investment in additional hardware could vastly improve the chances of a successful attack.  An infrared (IR) LED chip could be co-encapsulated with a visible LED in the same package.  If the two LEDs were connected back-to-back internally, only two leads would be required, and the Trojan LED would be indistinguishable from a standard component except under high magnification.  Modification to the keyboard controller circuitry would be required to utilize the IR capability; as long as this is being done anyway, the following ``improvements'' might be made to the controller's firmware at the same time:
+
+\begin{itemize}
+
+\item Increasing the drive current to the IR emitter for correspondingly increased range
+
+\item Use of more sophisticated channel encoding to reduce transmission errors and support higher speeds
+
+\item A timer and buffer memory to allow for a delay in sending until the keyboard has been idle for some time
+
+\item Encryption and compression of the covert channel
+
+\item Sender identification to support multiple units in a single location
+
+\item Pattern matching capability, to look for specific information in the keyboard data stream
+
+\item Preserving the normal functionality of the visible LED indicator.
+
+\end{itemize}
+
+Given that access to the hardware or surreptitious replacement would be necessary in order to emplace a hardware Trojan horse, concurrent implementation the above features would pose no significant trouble.  Modifications to firmware would be nearly undetectable, barring a close examination of the microcontroller object code.
+
+subsection{Conclusions}
+
+This vulnerability potentially affects hundreds of millions of devices.
+It might be argued that keyboard LEDs lack sufficient brightness to be successfully exploited from a long distance.  However, the author once encountered a Compaq PC whose keyboard LEDs were bright enough to throw shadows on the ceiling.  When tested, this keyboard was able to handle 150 bits/sec communication on all three LEDs simultaneously without noticeably affecting response time.
+
+\subsection{Summary}
+
+It has been shown that it is possible to cause the emission of compromising optical emanations even in devices not normally vulnerable, by taking advantage of software-controlled LED indicators such as the Caps Lock, Num Lock, and Scroll Lock, which are available on nearly all personal computer and workstation keyboards.  The covert channel thereby created has a bandwidth of at least several hundred bits/sec, and is compatible with standard techniques for exploiting compromising optical emanations described in the previous paper.
+
+\section{Sending Data Through the Keyboard}
+
+The following C program implements the software covert channel under Solaris.  It transmits ASCII data by modulating the Caps Lock LED with serial data at 50 bits/sec.  A similar program, written in Intel x86 assembly language and incorporating additional functionality\footnote{The program installs itself as an interrupt handler and hooks the keyboard interrupt.  It copies all keyboard activity, while waiting for the keyboard to become idle.  After four hours of no keyboard activity, the contents of the buffer are transmitted.  If any keyboard activity is detected while the program is busy transmitting, it immediately stops sending, restores the state of the keyboard LEDs, and resumes waiting.}, required less than 1500 bytes of memory.
+
+\begin{verbatim}
+
+/*
+// sl.c -- A covert channel using the Caps Lock LED.
+//
+// For Solaris on SPARC; to compile: ${CC} sl.c -lposix4
+*/
+
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/kbio.h>
+#include <sys/kbd.h>
+#include <time.h>
+#include <unistd.h>
+
+#define SIGNALING_RATE 50 /* desired data rate in bits per second */
+
+void set_led (int fd, char *data);
+void time_led (int fd, char *data);
+void perror_exit (char *function_name);
+
+/* set up a 20 millisecond intersymbol delay */
+
+struct timespec min, max = { 0, 1000000000 / SIGNALING_RATE };
+
+int
+main (void)
+{
+    char message[] = "My credit card number is 1234 5678 910 1112.";
+    char restore_data;
+    char *p = &message[0];
+    int  fd;
+
+    /* open the keyboard device (read-only access will suffice) */
+    if ((fd = open ("/dev/kbd", O_RDONLY)) < 0)
+        perror_exit ("open");
+
+    /* save the state of the keyboard LEDs */
+    if (ioctl (fd, KIOCGLED, &restore_data) < 0)
+        perror_exit ("ioctl");
+
+    while (*p) {
+        char data = LED_CAPS_LOCK;
+        int  i;
+
+        /* start bit is a "1" */
+        time_led (fd, &data);
+
+        /* send 8 bits of data, least significant bit first */
+        for (i = 0; i < 8; i++) {
+            data = *p >> i & 1 ? LED_CAPS_LOCK : 0;
+            time_led (fd, &data);
+        }
+
+        /* stop bit is a "0" */
+        data = 0;
+        time_led (fd, &data);
+
+        /* next character of message */
+        p++;
+    }
+    /* restore the state of the keyboard LEDs */
+    set_led (fd, &restore_data);
+
+    return (close (fd));
+}
+
+/* turn one or more keyboard LEDs on or off */
+
+void
+set_led (int fd, char *data)
+{
+    if (ioctl (fd, KIOCSLED, data) < 0)
+        perror_exit ("ioctl");
+}
+
+/* transmit one bit */
+
+void
+time_led (int fd, char *data)
+{
+    set_led (fd, data);
+    nanosleep (&min, &max);
+}
+
+/* display an error message and quit */
+
+void
+perror_exit (char *function_name)
+{
+    perror (function_name);
+    exit (1);
+}
+
+\end{verbatim}
+
+\bibliography{optical_tempest}
+
+\end{document}
+
